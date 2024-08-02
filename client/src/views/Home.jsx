@@ -44,7 +44,7 @@ export function Home() {
         <div>
           <div className="bg-white">
             <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-              <div className="mx-auto max-w-2xl text-center">
+              <div className="mx-auto text-center">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                   Dapatkan Informasi Terbaru Secara Real-Time
                   <br />
@@ -74,37 +74,33 @@ export function Home() {
                 </div>
 
                 {/* news */}
-                <div>
+                <div className="flex flex-wrap justify-center gap-4">
                   {news.map((item, index) => (
-                    <div key={index} className="max-w-2xl mx-auto mt-5">
-                      <div className="flex gap-3 bg-white border border-gray-300 rounded-xl overflow-hidden items-center justify-start">
-                        <div className="relative w-32 h-32 flex-shrink-0">
-                          <img
-                            className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50 bg-slate-600"
-                            loading="lazy"
-                            src={item.imageUrl}
-                            alt="image news"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2 py-2">
-                          <p className="text-xl font-bold text-left">
-                            {item.title}
-                          </p>
-                          <span className="flex items-center justify-start text-gray-500"></span>
-                          <p className="text-gray-500 text-left">
-                            {truncateDescription(item.description)}{" "}
-                            <span>
-                              <button
-                                onClick={() => handleReadDetails(item.id)}
-                                className="text-blue-500 hover:underline mt-2"
-                              >
-                                Read Details
-                              </button>
-                            </span>
-                          </p>
-                        </div>
+                    <a
+                      key={index}
+                      className="p-4 sm:p-6 lg:p-8 w-full sm:max-w-sm lg:max-w-md border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col sm:flex-row lg:flex-col items-center s bg-white transition duration-300 ease-in-out"
+                      href="#"
+                    >
+                      <img
+                        src={item.imageUrl}
+                        alt="image news"
+                        className="shadow rounded-lg overflow-hidden border object-cover object-center w-full sm:w-1/3 lg:w-full h-40 sm:h-32 lg:h-56"
+                      />
+                      <div className="mt-4 sm:mt-0 lg:mt-8 sm:ml-4 lg:ml-0 text-center sm:text-left lg:text-center w-full">
+                        <h4 className="font-bold text-lg sm:text-lg lg:text-xl text-left">
+                          {item.title}
+                        </h4>
+                        <p className="mt-2 text-gray-600 text-xs sm:text-sm lg:text-base text-left">
+                          {truncateDescription(item.description)}{" "}
+                          <span
+                            className="hover:text-[#254336] hover:font-bold"
+                            onClick={() => handleReadDetails(item.id)}
+                          >
+                            read detail
+                          </span>
+                        </p>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
