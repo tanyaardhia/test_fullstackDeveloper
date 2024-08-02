@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const cors = require("cors");
 const router = require("./routers");
 const app = express();
 const port = 3000;
@@ -10,6 +11,7 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors());
 app.use(router);
 
 app.get("/", (req, res) => {
