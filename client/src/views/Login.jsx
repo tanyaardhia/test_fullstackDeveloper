@@ -21,7 +21,7 @@ export function Login() {
       localStorage.setItem("access_token", responseLogin.data.access_token); // Access data properly
       toast.success("Login successful!");
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/");
       }, 3000);
     } catch (error) {
       console.error("error login:", error.response || error.message || error);
