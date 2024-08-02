@@ -1,6 +1,6 @@
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
-const { User } = require("../models");
+const { User, Article } = require("../models");
 
 class Controller {
   static async registerUser(req, res) {
@@ -64,7 +64,7 @@ class Controller {
       }
 
       console.log(dataLogin, "data login controller");
-      
+
       const isMatch = comparePassword(password, dataLogin.password);
       if (!isMatch) {
         throw { code: 401, message: "Invalid email or password" };
@@ -74,6 +74,26 @@ class Controller {
       const access_token = createToken(payload);
 
       res.status(200).json({ access_token });
+    } catch (error) {
+      console.log(error);
+      if (error.code && error.message) {
+        res.status(error.code).json({ message: error.message });
+      } else if (
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeValidationError"
+      ) {
+        res.status(400).json({ message: error.errors[0].message });
+      } else {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  }
+
+  static async getDataArticle(req, res) {
+    try {
+      console.log("masuk get data article");
+      const getDataArticle = await Article.findAll();
+      res.status(200).json(getDataArticle);
     } catch (error) {
       console.log(error);
       if (error.code && error.message) {
