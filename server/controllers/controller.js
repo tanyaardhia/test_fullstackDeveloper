@@ -89,6 +89,35 @@ class Controller {
     }
   }
 
+  static async profileUser(req, res) {
+    try {
+      console.log("masuk get profile user");
+      const { id } = req.params;
+      console.log(id, " <<< profile user");
+
+      const dataProfile = await User.findByPk(id);
+      console.log(dataProfile, " <<< profile user");
+
+      if (!dataProfile) {
+        throw { code: 404, message: "User not found" };
+      }
+
+      res.status(200).json(dataProfile);
+    } catch (error) {
+      console.log(error);
+      if (error.code && error.message) {
+        res.status(error.code).json({ message: error.message });
+      } else if (
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeValidationError"
+      ) {
+        res.status(400).json({ message: error.errors[0].message });
+      } else {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  }
+
   static async getDataArticle(req, res) {
     try {
       console.log("masuk get data article");
