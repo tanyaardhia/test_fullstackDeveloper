@@ -3,6 +3,7 @@ import { Home } from "./views/Home";
 import { Login } from "./views/Login";
 import { Register } from "./views/Register";
 import Layout from "./views/Layout";
+import { DetailNewsById } from "./views/detailNewsById";
 
 export const router = createBrowserRouter([
   {
@@ -16,33 +17,32 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-    loader: () => {
-      const isLogin = localStorage.getItem("access_token");
-      if (isLogin) {
-        return redirect("/dashboard");
-      } else {
-        return null;
-      }
-    },
   },
   {
     element: <Layout />,
-    loader: () => !localStorage.getItem("access_token") && redirect("/"),
     children: [
       {
         path: "/dashboard",
         element: <h1>Dashboard</h1>,
       },
       {
-        path: "/profile",
-        element: <h1>Profile</h1>,
+        path: "/news/:id",
+        element: <DetailNewsById />,
+        loader: () => {
+          const isLogin = localStorage.getItem("access_token");
+          // console.log(isLogin, "masukk");
+          if (!isLogin) {
+            // console.log("masukk");
+            return redirect("/login");
+          }
+          // console.log("masukk 2");
+
+          return null;
+        },
       },
       {
-        path: "/logout",
-        element: () => {
-          localStorage.removeItem("access_token");
-          return redirect("/");
-        },
+        path: "/profile",
+        element: <h1>Profile</h1>,
       },
     ],
   },
