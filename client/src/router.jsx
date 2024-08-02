@@ -22,10 +22,6 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/dashboard",
-        element: <h1>Dashboard</h1>,
-      },
-      {
         path: "/news/:id",
         element: <DetailNewsById />,
         loader: () => {
