@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [id, setId] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Cek status login dari localStorage saat komponen di-render
     const token = localStorage.getItem("access_token");
     setIsLoggedIn(!!token);
+
+    const storedId = localStorage.getItem("user_id");
+    setId(storedId);
   }, []);
 
   const toggleMenu = () => {
@@ -19,6 +22,7 @@ export function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("user_id");
     setIsLoggedIn(false);
     navigate("/");
   };
@@ -46,9 +50,12 @@ export function Navbar() {
               <div className="hidden lg:flex lg:items-center gap-x-2">
                 {isLoggedIn ? (
                   <>
-                    <button className="flex items-center text-black dark:text-white justify-center px-6 py-2.5 font-semibold">
-                      <a href="/profile">Profile</a>
-                    </button>
+                    <Link
+                      to={`/profile/${id}`} className="mr-5"
+                    >
+                      Profile
+                    </Link>
+
                     <button
                       className="flex items-center justify-center rounded-md bg-[#E88D67] text-white px-6 py-2.5 font-semibold hover:shadow-lg hover:drop-shadow transition duration-200"
                       onClick={handleLogout}
@@ -106,7 +113,7 @@ export function Navbar() {
                 {isLoggedIn ? (
                   <>
                     <button className="w-full py-2 text-center text-white bg-[#E88D67] rounded hover:shadow-lg hover:drop-shadow transition duration-200">
-                      <a href="/profile">Profile</a>
+                      <Link to={`/profile/${id}`}>Profile</Link>
                     </button>
                     <button
                       className="w-full mt-2 py-2 text-center text-black dark:text-white bg-[#eadfd3] rounded hover:shadow-lg hover:drop-shadow transition duration-200"

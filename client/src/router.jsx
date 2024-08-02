@@ -4,6 +4,7 @@ import { Login } from "./views/Login";
 import { Register } from "./views/Register";
 import Layout from "./views/Layout";
 import { DetailNewsById } from "./views/detailNewsById";
+import { ProfileUser } from "./views/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -37,8 +38,8 @@ export const router = createBrowserRouter([
         },
       },
       {
-        path: "/profile",
-        element: <h1>Profile</h1>,
+        path: "/profile/:id",
+        element: <ProfileUser/>,
       },
     ],
   },
