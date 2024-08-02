@@ -108,6 +108,35 @@ class Controller {
       }
     }
   }
+
+  static async getDataArticleById(req, res) {
+    try {
+      console.log("masuk get data article by id");
+      const { id } = req.params;
+      console.log(req.params, "<<<<<<<<<< id");
+
+      const getDataArticleById = await Article.findByPk(id);
+      console.log(getDataArticleById, "<<< data");
+
+      if (!getDataArticleById) {
+        throw { code: 404, message: "Data not found" };
+      }
+
+      res.status(200).json(getDataArticleById);
+    } catch (error) {
+      console.log(error);
+      if (error.code && error.message) {
+        res.status(error.code).json({ message: error.message });
+      } else if (
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeValidationError"
+      ) {
+        res.status(400).json({ message: error.errors[0].message });
+      } else {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  }
 }
 
 module.exports = Controller;
