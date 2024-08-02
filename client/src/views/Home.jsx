@@ -33,14 +33,19 @@ export function Home() {
   };
 
   const handleReadDetails = (id) => {
-    navigate(`/news/${id}`);
+    if (!isLoggedIn) {
+      toast.error("please log in to view the news details");
+      setTimeout(() => {
+        navigate(`/news/${id}`);
+      }, 5000);
+    }
   };
 
   return (
     <>
       <div>
         <Navbar />
-        {/* <ToastContainer /> */}
+        <ToastContainer />
         <div>
           <div className="bg-white">
             <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
