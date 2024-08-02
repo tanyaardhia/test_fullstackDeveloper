@@ -1,7 +1,30 @@
+const { User } = require("../models");
+
 class Controller {
   static async registerUser(req, res) {
     try {
-        res.send("hellow resgister user")
+      const { name, email, password, phoneNumber } = req.body;
+      console.log("masuk registerrr");
+
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        throw new Error("Email already exists");
+      }
+
+      const newUser = await User.create({
+        name,
+        email,
+        password,
+        phoneNumber,
+      });
+      res
+        .status(201)
+        .json({
+          message: "User registered successfully",
+          id: newUser.id,
+          email: newUser.email,
+          phoneNumber: newUser.phoneNumber,
+        });
     } catch (error) {
       console.log(error);
       if (error.code && error.message) {
