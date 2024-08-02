@@ -1,17 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      console.log("masuk login");
+      console.log("data before login:", data);
+
+      const responseLogin = await axios.post(
+        "http://localhost:3000/login",
+        data
+      );
+      localStorage.setItem("access_token", responseLogin.data.access_token); // Access data properly
+      toast.success("Login successful!");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
+    } catch (error) {
+      console.error("error login:", error.response || error.message || error);
+      toast.error("Login failed. Please try again.");
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
       <div className="w-full max-w-lg mx-auto shadow-lg px-6 py-7 bg-white rounded-2xl overflow-hidden">
-        <h2 className="text-2xl uppercase font-bold mb-1 text-center">
-          Login
-        </h2>
-        <p className="text-gray-600 mb-6 text-sm text-center">
+        <h2 className="text-2xl uppercase font-bold mb-1 text-center">Login</h2>
+        <p className="text-gray-600 mb-3 text-sm text-center">
           Welcome, So good to have you back!
         </p>
-        <form autoComplete="off">
-          <p className="text-red-500" />
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="text-gray-600 mb-2 block">
@@ -21,9 +46,11 @@ export function Login() {
                 type="email"
                 name="email"
                 id="email"
+                {...register("email", { required: "Email is required" })}
                 className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="email@domain.com"
               />
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
             <div>
               <label htmlFor="password" className="text-gray-600 mb-2 block">
@@ -33,9 +60,11 @@ export function Login() {
                 type="password"
                 name="password"
                 id="password"
+                {...register("password", { required: "Password is required" })}
                 className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="***********"
               />
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
           </div>
           <div className="mt-6">
@@ -53,6 +82,7 @@ export function Login() {
             </div>
           </div>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );
