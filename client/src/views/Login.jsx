@@ -18,7 +18,9 @@ export function Login() {
         "http://localhost:3000/login",
         data
       );
-      localStorage.setItem("access_token", responseLogin.data.access_token); // Access data properly
+      localStorage.setItem("access_token", responseLogin.data.access_token); 
+      localStorage.setItem("id", responseLogin.data.id);
+      
       toast.success("Login successful!");
       setTimeout(() => {
         navigate("/");

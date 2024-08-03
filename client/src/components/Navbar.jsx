@@ -11,10 +11,12 @@ export function Navbar() {
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     setIsLoggedIn(!!token);
+    console.log(id, "<<<<");
 
-    const storedId = localStorage.getItem("user_id");
+    const storedId = localStorage.getItem("id");
+    console.log(storedId, "<<store");
     setId(storedId);
-  }, []);
+  }, [id]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,7 +24,7 @@ export function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    localStorage.removeItem("user_id");
+    localStorage.removeItem("id");
     setIsLoggedIn(false);
     navigate("/");
   };
@@ -50,9 +52,7 @@ export function Navbar() {
               <div className="hidden lg:flex lg:items-center gap-x-2">
                 {isLoggedIn ? (
                   <>
-                    <Link
-                      to={`/profile/${id}`} className="mr-5"
-                    >
+                    <Link to={`/profile/${id}`} className="mr-5">
                       Profile
                     </Link>
 

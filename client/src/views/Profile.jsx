@@ -16,8 +16,7 @@ export function ProfileUser() {
         `http://localhost:3000/profileUser/${id}`
       );
 
-      console.log(responseProfile.data, ">>> profile");
-      localStorage.removeItem("user_id");
+      console.log(responseProfile.data, ">>> profile")
 
       setUserData(responseProfile.data);
       setLoading(false);
