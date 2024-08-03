@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export function ProfileUser() {
   const { id } = useParams();
   console.log(id, ">> profile");
-  const [userData, setUserData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ export function ProfileUser() {
 
       console.log(responseProfile.data, ">>> profile")
 
-      setUserData(responseProfile.data);
+      setProfileData(responseProfile.data);
       setLoading(false);
     } catch (error) {
       console.log("Error fetching data:", error);
@@ -55,7 +55,7 @@ export function ProfileUser() {
             <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Full name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {userData?.name}
+                {profileData?.name}
               </dd>
             </div>
             <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -63,7 +63,7 @@ export function ProfileUser() {
                 Email address
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {userData?.email}
+                {profileData?.email}
               </dd>
             </div>
             <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -71,7 +71,7 @@ export function ProfileUser() {
                 Phone number
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {userData?.phoneNumber}
+                {profileData?.phoneNumber}
               </dd>
             </div>
           </dl>
