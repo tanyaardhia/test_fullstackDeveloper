@@ -36,11 +36,14 @@ export function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4" style={{ backgroundImage: "url('../public/bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="w-full max-w-lg mx-auto shadow-lg px-6 py-7 bg-white rounded-2xl overflow-hidden">
-        <h2 className="text-2xl uppercase font-bold mb-6 text-center">
+        <h2 className="text-2xl uppercase font-bold mb-1 text-center">
           Create Account
         </h2>
+        <p className="text-gray-600 mb-3 text-sm text-center">
+          please Create your account here
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <div>
@@ -52,7 +55,7 @@ export function Register() {
                 name="name"
                 id="name"
                 {...register("name", { required: "Name is required" })}
-                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
+                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="your name"
               />
               {errors.name && (
@@ -70,7 +73,7 @@ export function Register() {
                 {...register("phoneNumber", {
                   required: "Phone number is required",
                 })}
-                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
+                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="08xxxxxxxx"
               />
               {errors.phoneNumber && (
@@ -86,7 +89,7 @@ export function Register() {
                 name="email"
                 id="email"
                 {...register("email", { required: "Email is required" })}
-                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
+                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="email@domain.com"
               />
               {errors.email && (
@@ -102,7 +105,7 @@ export function Register() {
                 name="password"
                 id="password"
                 {...register("password", { required: "Password is required" })}
-                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
+                className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="***********"
               />
               {errors.password && (
@@ -113,13 +116,13 @@ export function Register() {
           <div className="mt-6">
             <button
               type="submit"
-              className="block w-full py-2 text-center text-white bg-[#698474] border border-[#698474] rounded hover:bg-transparent hover:text-[#698474] transition uppercase font-roboto font-medium"
+              className="block w-full py-2 text-center text-white bg-[#7FA1C3] border border-[#7FA1C3] rounded-xl hover:bg-transparent hover:text-[#7FA1C3] transition uppercase font-roboto font-medium"
             >
               Register
             </button>
-            <div className="flex justify-center gap-2 pt-5">
+            <div className="flex justify-center pt-5">
               <p className="text-gray-600 text-sm">Already have an account?</p>
-              <Link className="text-gray-600 text-sm underline" to="/login">
+              <Link className="text-gray-600 text-sm ml-1 hover:font-semibold hover:text-[#6482AD]" to="/login">
                 Login
               </Link>
             </div>
