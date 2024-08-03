@@ -34,18 +34,15 @@ export function DetailNewsById() {
             </p>
             <a href="#">
               <img
-                className="w-full my-4"
+                className="w-full mt-4 mb-2"
                 src={detailNewsById?.imageUrl}
                 alt="Photo details"
               />
             </a>
-            <p className="text-gray-700 text-base leading-8 max-w-2xl mx-auto">
-              {detailNewsById?.description}
-            </p>
-            <div className="py-5 text-sm font-regular text-gray-900 flex items-center justify-center">
-              <p className="flex flex-row items-center mr-3">
+            <div className="text-xs font-regular text-gray-900 flex items-center">
+              <p className="flex flex-row items-center italic">
                 <svg
-                  className="text-indigo-600"
+                  className="text-[#517293]"
                   fill="currentColor"
                   height="16px"
                   aria-hidden="true"
@@ -63,7 +60,10 @@ export function DetailNewsById() {
                 <span className="ml-1"> {detailNewsById?.writer}</span>
               </p>
             </div>
-            <hr />
+
+            <p className="text-gray-700 text-justify leading-8 mt-4 max-w-2xl mx-auto">
+              {detailNewsById?.description}
+            </p>
           </div>
         </div>
       </div>
