@@ -73,7 +73,7 @@ class Controller {
       const payload = { id: dataLogin.id };
       const access_token = createToken(payload);
 
-      res.status(200).json({ access_token });
+      res.status(200).json({ access_token, id : dataLogin.id });
     } catch (error) {
       console.log(error);
       if (error.code && error.message) {
