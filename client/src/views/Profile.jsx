@@ -41,7 +41,7 @@ export function ProfileUser() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white overflow-hidden shadow rounded-lg border w-full max-w-lg">
+      <div className="bg-white m-5 overflow-hidden shadow rounded-lg border w-full max-w-lg">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             User Profile
