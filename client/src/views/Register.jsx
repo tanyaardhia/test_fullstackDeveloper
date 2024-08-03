@@ -38,11 +38,22 @@ export function Register() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4" style={{ backgroundImage: "url('../public/bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="w-full max-w-lg mx-auto shadow-lg px-6 py-7 bg-white rounded-2xl overflow-hidden">
-        <h2 className="text-2xl uppercase font-bold mb-1 text-center">
-          Create Account
+
+      <a href="/">
+        <div className="flex justify-center items-center">
+          <img
+            src="../public/logo.png"
+            alt="logo"
+            className="h-42 w-56 -m-0 mb-5"
+          />
+        </div>
+        </a>
+
+        <h2 className="text-lg uppercase font-bold mb-1 text-center">
+          Sign up for your PrimeHeadlines account
         </h2>
         <p className="text-gray-600 mb-3 text-sm text-center">
-          please Create your account here
+          please create your account here!
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
