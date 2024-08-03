@@ -4,8 +4,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from 'react-infinite-scroll-component';
-        
+import InfiniteScroll from "react-infinite-scroll-component";
+
 export function Home() {
   const [news, setNews] = useState([]);
   const navigate = useNavigate();
@@ -14,10 +14,12 @@ export function Home() {
 
   const fetchDataNews = async (pageNumber) => {
     try {
-      const responseNews = await axios.get(`http://localhost:3000/news?page=${pageNumber}`);
+      const responseNews = await axios.get(
+        `http://localhost:3000/news?page=${pageNumber}`
+      );
       console.log(responseNews, "<< home");
       if (responseNews.data.length > 0) {
-        setNews(prevNews => [...prevNews, ...responseNews.data]);
+        setNews((prevNews) => [...prevNews, ...responseNews.data]);
         setHasMore(responseNews.data.length > 0);
       } else {
         setHasMore(false);
@@ -44,6 +46,9 @@ export function Home() {
       navigate(`/news/${id}`);
     } else {
       toast.error("Silahkan login terlebih dahulu");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     }
   };
 
@@ -72,7 +77,7 @@ export function Home() {
                 {/* news */}
                 <InfiniteScroll
                   dataLength={news.length}
-                  next={() => setPage(prevPage => prevPage + 1)}
+                  next={() => setPage((prevPage) => prevPage + 1)}
                   hasMore={hasMore}
                   loader={<h4>Loading...</h4>}
                   endMessage={<p>Yay! You have seen it all</p>}
