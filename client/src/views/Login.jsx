@@ -7,7 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     try {
@@ -18,9 +22,9 @@ export function Login() {
         "http://localhost:3000/login",
         data
       );
-      localStorage.setItem("access_token", responseLogin.data.access_token); 
+      localStorage.setItem("access_token", responseLogin.data.access_token);
       localStorage.setItem("id", responseLogin.data.id);
-      
+
       toast.success("Login successful!");
       setTimeout(() => {
         navigate("/");
@@ -32,9 +36,27 @@ export function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4" style={{ backgroundImage: "url('../public/bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div
+      className="flex justify-center items-center min-h-screen bg-gray-100 px-4"
+      style={{
+        backgroundImage: "url('../public/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="w-full max-w-lg mx-auto shadow-lg px-6 py-7 bg-white rounded-2xl overflow-hidden">
-        <h2 className="text-2xl uppercase font-bold mb-1 text-center">Login</h2>
+        <a href="/">
+        <div className="flex justify-center items-center">
+          <img
+            src="../public/logo.png"
+            alt="logo"
+            className="h-42 w-56 -m-0 mb-5"
+          />
+        </div>
+        </a>
+        
+
+        <h2 className="text-lg uppercase font-bold mb-1 text-center">Login to your PrimeHeadlines account</h2>
         <p className="text-gray-600 mb-3 text-sm text-center">
           Welcome, So good to have you back!
         </p>
@@ -52,7 +74,9 @@ export function Login() {
                 className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="email@domain.com"
               />
-              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="password" className="text-gray-600 mb-2 block">
@@ -66,7 +90,9 @@ export function Login() {
                 className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded-xl focus:ring-0 focus:border-teal-500 placeholder-gray-400"
                 placeholder="***********"
               />
-              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
             </div>
           </div>
           <div className="mt-6">
@@ -78,7 +104,10 @@ export function Login() {
             </button>
             <div className="flex justify-center pt-5">
               <p className="text-gray-600 text-sm">Don't have an account?</p>
-              <Link className="text-gray-600 text-sm ml-1 hover:font-semibold hover:text-[#6482AD]" to="/register">
+              <Link
+                className="text-gray-600 text-sm ml-1 hover:font-semibold hover:text-[#6482AD]"
+                to="/register"
+              >
                 Register
               </Link>
             </div>
