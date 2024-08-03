@@ -32,7 +32,7 @@ export function Navbar() {
   return (
     <>
       <div>
-        <div className="top-0 py-1 lg:py-2 w-full bg-transparent lg:relative z-50 dark:bg-gray-900">
+        <div className="top-0 py-1 lg:py-2 w-full bg-transparent lg:relative z-50 dark:bg-gray-900 bg-[#E2DAD6]">
           <nav className="z-10 sticky top-0 left-0 right-0 max-w-4xl xl:max-w-5xl mx-auto px-5 py-2.5 lg:border-none lg:py-4">
             <div className="flex items-center justify-between">
               <button>
@@ -52,12 +52,12 @@ export function Navbar() {
               <div className="hidden lg:flex lg:items-center gap-x-2">
                 {isLoggedIn ? (
                   <>
-                    <Link to={`/profile/${id}`} className="mr-5">
+                    <Link to={`/profile/${id}`} className="mr-5 hover:text-[#6482AD] hover:font-semibold">
                       Profile
                     </Link>
 
                     <button
-                      className="flex items-center justify-center rounded-md bg-[#E88D67] text-white px-6 py-2.5 font-semibold hover:shadow-lg hover:drop-shadow transition duration-200"
+                      className="flex items-center justify-center rounded-md bg-[#6482AD] text-white px-6 py-2.5 font-semibold hover:shadow-lg hover:drop-shadow transition duration-200"
                       onClick={handleLogout}
                     >
                       Logout
@@ -65,10 +65,10 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
-                    <button className="flex items-center text-black dark:text-white justify-center px-6 py-2.5 font-semibold ">
+                    <button className="flex items-center text-black dark:text-white justify-center px-6 py-2.5 font-bold ">
                       <a href="/register">Sign Up</a>
                     </button>
-                    <button className="flex items-center justify-center rounded-md bg-[#E88D67] text-white px-6 py-2.5 font-semibold hover:shadow-lg hover:drop-shadow transition duration-200">
+                    <button className="flex items-center justify-center rounded-md bg-[#7FA1C3] text-white px-6 py-2.5 font-bold hover:shadow-lg hover:drop-shadow transition duration-200">
                       <a href="/login">Login</a>
                     </button>
                   </>
@@ -106,17 +106,17 @@ export function Navbar() {
             >
               <ul className="flex flex-col space-y-4 text-base font-bold text-black/60 dark:text-white">
                 <li className="hover:underline hover:underline-offset-4 hover:w-fit transition-all duration-100 ease-linear">
-                  <a href="#">Home</a>
+                  <a href="/">Home</a>
                 </li>
               </ul>
               <div className="mt-4">
                 {isLoggedIn ? (
                   <>
-                    <button className="w-full py-2 text-center text-white bg-[#E88D67] rounded hover:shadow-lg hover:drop-shadow transition duration-200">
+                    <button className="w-full py-2 text-center text-white bg-[#6482AD] rounded hover:shadow-lg hover:drop-shadow transition duration-200">
                       <Link to={`/profile/${id}`}>Profile</Link>
                     </button>
                     <button
-                      className="w-full mt-2 py-2 text-center text-black dark:text-white bg-[#eadfd3] rounded hover:shadow-lg hover:drop-shadow transition duration-200"
+                      className="w-full mt-2 py-2 text-center text-black dark:text-white bg-[#f7ecec] rounded hover:shadow-lg hover:drop-shadow transition duration-200"
                       onClick={handleLogout}
                     >
                       Logout
@@ -124,10 +124,10 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
-                    <button className="w-full py-2 text-center text-white bg-[#E88D67] rounded hover:shadow-lg hover:drop-shadow transition duration-200">
+                    <button className="w-full py-2 text-center bg-[#7FA1C3] rounded hover:shadow-lg hover:drop-shadow transition duration-200 font-bold text-white">
                       <a href="/login">Login</a>
                     </button>
-                    <button className="w-full mt-2 py-2 text-center text-black dark:text-white bg-[#eadfd3] rounded hover:shadow-lg hover:drop-shadow transition duration-200">
+                    <button className="w-full mt-2 py-2 text-center text-black dark:text-white bg-[#f7ecec] rounded hover:shadow-lg hover:drop-shadow transition duration-200 font-bold">
                       <a href="/register">Sign Up</a>
                     </button>
                   </>
